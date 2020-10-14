@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    color: rgb(0, 58, 61);
+    background-color: lightcyan;
+    text-align: center;
+    font-size: 11px;
+}
+
+.container {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+/* Grid styling */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: cadetblue;
+}
+
+.grid div {
+    height: 25px;
+    width: 25px;
+    border: 1px solid #f1f1f1;
+}
+
+.main-grid {
+    width: 250px;
+    min-width: 250px;
+    height: 500px;
+}
+
+.preview-grid {
+    width: 100px;
+    min-width: 100px;
+    height: 100px;
+}
+
+/* Panel styling */
+#panel {
+    margin-left: 20px;
+    display: block;
+    position: relative;
+    max-width: 100px;
+}
+
+
+.scoreboard {
+    color: rgb(0, 58, 61);
+    width: 100px;
+}
+
+.hs {
+    list-style-type: none;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.score {
+    list-style-type: none;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+/* Button styling */
+.btn {
+    font-family: 'Press Start 2P', cursive;
+    height: 40px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 3px;
+    color: #f1f1f1;
+    background-color: rgb(0, 58, 61);
+}
+
+/* Tetromino */
+.tetromino {
+    background-color: rgb(0, 58, 61);
+}
+
+.locked {
+    background-color: red;
+}
+
+.preview {
+    background-color: darkviolet;
+}
+
+/* Save panel */
+.save-panel {
+  width: 200px;
+  display: block;
+  position: relative;
+  top: 0;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: lightcyan;
+  border: solid 3px rgb(0, 58, 61);
+}
+
+.name-input {
+  width: 100%;
+  margin-bottom: 10px;
+  background: none;
+  border: none;
+  border-bottom: solid 2px rgb(0, 58, 61);
+  font-family: 'Press Start 2P', cursive;
+}
+
+#highscore {
+    font-size: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* responsiveness */
+@media (max-width: 400px){
+    .grid div {
+        height: 10px;
+        width: 10px;
+    }
+    .main-grid {
+        height: 200px;
+        min-width: 100px;
+    }
+    .preview-grid {
+        height: 40px;
+        min-width: 40px;
+    }
+    body {
+        font-size: 9px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    #panel {
+        margin-left: 8px;
+    }
+    .scoreboard {
+        min-width: 40px;
+        margin-bottom: 4px;
+    }
+}
