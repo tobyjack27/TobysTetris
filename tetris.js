@@ -239,7 +239,13 @@ var game = new Game;
 startBtn.addEventListener('click', startStop);
 resetBtn.addEventListener('click', reset);
 document.addEventListener('keydown', moveTetromino);
-saveBtn.addEventListener('click', postHighScore);
+saveBtn.addEventListener('click', () => {
+    
+    postHighScore()
+    .then(()=>{
+
+    })
+})
 
 // start/stop functions
 function startStop(){
@@ -378,7 +384,6 @@ function updateScore(){
 
 async function fetchHighScores(){
     let data = await $.getJSON('https://lit-hollows-17437.herokuapp.com/api/highscores/tetris')
-    console.log(data)
     for(let i=0; i<5; i++){
         if(data[i]){
             let rank = i+1;
@@ -391,6 +396,8 @@ async function fetchHighScores(){
 }
 
 async function postHighScore(){
+    saveBtn.removeEventListener('click', postHighScore);
+    saveBtn.textContent = "Saving...";
     let data = {
         name: nameInput.value,
         score: game.score,
@@ -399,6 +406,8 @@ async function postHighScore(){
     let response = await $.post('https://lit-hollows-17437.herokuapp.com/api/highscores', data);
     console.log(response);
     savePanel.classList.add('hidden');
-    fetchHighScores()
+    let response2 = await fetchHighScores()
+    saveBtn.addEventListener('click', postHighScore);
+    saveBtn.textContent = "Save";
 }
 
