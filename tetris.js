@@ -239,13 +239,7 @@ var game = new Game;
 startBtn.addEventListener('click', startStop);
 resetBtn.addEventListener('click', reset);
 document.addEventListener('keydown', moveTetromino);
-saveBtn.addEventListener('click', () => {
-    
-    postHighScore()
-    .then(()=>{
-
-    })
-})
+saveBtn.addEventListener('click', postHighScore);
 
 // start/stop functions
 function startStop(){
