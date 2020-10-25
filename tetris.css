@@ -12,7 +12,7 @@ body {
 
 .container {
     position: absolute;
-    top: 90px;
+    top: 110px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -129,33 +129,4 @@ h1 {
 
 .hidden {
   display: none;
-}
-
-/* responsiveness */
-@media (max-width: 400px){
-    .grid div {
-        height: 10px;
-        width: 10px;
-    }
-    .main-grid {
-        height: 200px;
-        min-width: 100px;
-    }
-    .preview-grid {
-        height: 40px;
-        min-width: 40px;
-    }
-    body {
-        font-size: 9px;
-    }
-    h1 {
-        font-size: 20px;
-    }
-    #panel {
-        margin-left: 8px;
-    }
-    .scoreboard {
-        min-width: 40px;
-        margin-bottom: 4px;
-    }
 }

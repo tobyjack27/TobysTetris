@@ -10,7 +10,7 @@ const   scoreDisplay = document.getElementById('score'),
         savePanel = document.querySelector('.save-panel'),
         nameInput = document.querySelector('.name-input'),
         saveBtn = document.getElementById('save-btn'),
-        highscoreDisplap = document.getElementById('highscore');
+        highscoreDisplay = document.getElementById('highscore');
 
 // draw main grid
 for(let i=0; i<200; i++){
@@ -278,7 +278,7 @@ function gameOver() {
     startBtn.removeEventListener('click', startStop);
     startBtn.textContent = "Game Over!";
     if(game.score>Number(scoresDisplay[4].textContent)){
-        highscoreDisplap.textContent = game.score;
+        highscoreDisplay.textContent = game.score;
         savePanel.classList.remove('hidden');
     }
 }
@@ -377,31 +377,38 @@ function updateScore(){
 }
 
 async function fetchHighScores(){
-    let data = await $.getJSON('https://lit-hollows-17437.herokuapp.com/api/highscores/tetris')
-    for(let i=0; i<5; i++){
-        if(data[i]){
-            let rank = i+1;
-            let name = data[i].name.slice(0,6);
-            let score = data[i].score;
-            namesDisplay[i].textContent = `${rank}: ${name}`;
-            scoresDisplay[i].textContent = score;
+    try {
+        let data = await $.getJSON('https://lit-hollows-17437.herokuapp.com/api/highscores/tetris');
+        for(let i=0; i<5; i++){
+            if(data[i]){
+                let rank = i+1;
+                let name = data[i].name.slice(0,6);
+                let score = data[i].score;
+                namesDisplay[i].textContent = `${rank}: ${name}`;
+                scoresDisplay[i].textContent = score;
+            }
         }
-    };
+        return data;
+    } catch(e) {
+        console.log(`There was an error: ${e}`);
+    }
 }
 
 async function postHighScore(){
     saveBtn.removeEventListener('click', postHighScore);
-    saveBtn.textContent = "Saving...";
+    saveBtn.textContent = "Saving";
     let data = {
         name: nameInput.value,
         score: game.score,
         game: 'tetris'
     }
-    let response = await $.post('https://lit-hollows-17437.herokuapp.com/api/highscores', data);
-    console.log(response);
-    savePanel.classList.add('hidden');
-    let response2 = await fetchHighScores()
-    saveBtn.addEventListener('click', postHighScore);
-    saveBtn.textContent = "Save";
+    try {
+        let response = await $.post('https://lit-hollows-17437.herokuapp.com/api/highscores', data);
+        savePanel.classList.add('hidden');
+        let response2 = await fetchHighScores()
+        saveBtn.addEventListener('click', postHighScore);
+        saveBtn.textContent = "Save";
+    } catch(e) {
+        console.log(`There was an error: ${e}`);
+    }
 }
-
